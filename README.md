@@ -1,6 +1,6 @@
 # Amynex.xmp
 
-Amynex.xmp is a beginner-friendly Chrome extension for real-time phishing detection. It analyzes the current website URL and page content, computes a risk score, and stores scan history for portfolio-ready cybersecurity demonstrations.
+Amynex.xmp is a user-friendly Chrome extension for real-time phishing detection. It analyzes the current website URL and page content, computes a risk score, and stores scan history for portfolio-ready cybersecurity demonstrations.
 
 ## Project Structure
 
