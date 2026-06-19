@@ -20,7 +20,7 @@ header {
 
 h1 {
   margin: 0;
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   letter-spacing: 0.02em;
 }
 
@@ -30,7 +30,12 @@ p {
   font-size: 0.95rem;
 }
 
-.site-info, .risk-card, .history-card {
+.site-info,
+.risk-card,
+.stats-card,
+.explanation-card,
+.report-card,
+.history-card {
   background: #111228;
   border: 1px solid rgba(145, 95, 255, 0.16);
   border-radius: 16px;
@@ -94,12 +99,56 @@ p {
   letter-spacing: 0.08em;
 }
 
-.report-card {
-  background: #111228;
-  border: 1px solid rgba(145, 95, 255, 0.16);
-  border-radius: 16px;
-  padding: 16px;
-  margin-bottom: 16px;
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.stats-tile {
+  background: #0f1124;
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stats-tile span {
+  color: #8f92be;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.stats-tile strong {
+  font-size: 1.5rem;
+  color: #edf0ff;
+}
+
+.explanation-card h2,
+.report-card h2,
+.history-card h2 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+}
+
+.explanation-item {
+  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(145, 95, 255, 0.08);
+  color: #edf0ff;
+  line-height: 1.4;
+}
+
+.recommendation-text {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 14px;
+  background: #14162f;
+  color: #d1d3ff;
+  font-size: 0.94rem;
 }
 
 .report-actions {
@@ -150,11 +199,6 @@ p {
   background: rgba(111, 71, 255, 0.08);
   color: #edf0ff;
   font-size: 0.92rem;
-}
-
-.history-card h2 {
-  margin: 0 0 10px;
-  font-size: 1rem;
 }
 
 .history-item {

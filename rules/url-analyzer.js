@@ -1,11 +1,29 @@
 import phishingRules from './phishing-rules.js';
 
-export function analyzeUrl(rawUrl, threatDb) {
+function calculateEntropy(value) {
+  if (!value || value.length === 0) {
+    return 0;
+  }
+
+  const frequency = {};
+  for (const char of value) {
+    frequency[char] = (frequency[char] || 0) + 1;
+  }
+
+  return Object.values(frequency).reduce((entropy, count) => {
+    const p = count / value.length;
+    return entropy - p * Math.log2(p);
+  }, 0);
+}
+
+export function analyzeUrl(rawUrl) {
   const result = {
     score: 0,
     indicators: [],
     keywordMatches: [],
-    reputationReason: null
+    host: '',
+    path: '',
+    url: rawUrl
   };
 
   let url;
@@ -17,15 +35,24 @@ export function analyzeUrl(rawUrl, threatDb) {
 
   const hostname = url.hostname.toLowerCase();
   const normalizedUrl = rawUrl.toLowerCase();
+  const path = `${url.pathname}${url.search}`;
+
+  result.host = hostname;
+  result.path = path;
 
   if (url.protocol === 'http:') {
     result.score += 20;
     result.indicators.push('HTTP Connection');
   }
 
-  if (/^\d+\.\d+\.\d+\.\d+$/.test(hostname)) {
+  if (/^\d+(?:\.\d+){3}$/.test(hostname)) {
     result.score += 20;
     result.indicators.push('IP Address URL');
+  }
+
+  if (/^xn--/.test(hostname)) {
+    result.score += 30;
+    result.indicators.push('Punycode Domain');
   }
 
   const subdomainParts = hostname.split('.');
@@ -36,14 +63,14 @@ export function analyzeUrl(rawUrl, threatDb) {
 
   if (normalizedUrl.length > 90) {
     result.score += 10;
-    result.indicators.push('Long URL');
+    result.indicators.push('Excessive URL Length');
   }
 
   const keywordMatches = phishingRules.urlKeywords.filter((keyword) => normalizedUrl.includes(keyword));
   if (keywordMatches.length > 0) {
     result.score += 10;
     result.keywordMatches = [...new Set(keywordMatches)];
-    result.indicators.push('Suspicious Keywords in URL');
+    result.indicators.push(`Suspicious Keywords in URL (${result.keywordMatches.join(', ')})`);
   }
 
   if (phishingRules.lookalikePatterns.some((pattern) => pattern.test(hostname))) {
@@ -51,30 +78,11 @@ export function analyzeUrl(rawUrl, threatDb) {
     result.indicators.push('Lookalike Domain');
   }
 
-  if (threatDb?.phishing_domains) {
-    const matchedDomain = threatDb.phishing_domains.find((domain) => {
-      const normalized = domain.toLowerCase();
-      return hostname === normalized || hostname.endsWith(`.${normalized}`);
-    });
-
-    if (matchedDomain) {
-      result.score += 40;
-      result.reputationReason = 'Known phishing domain';
-      result.indicators.push('Blacklist Match');
-    }
-  }
-
-  if (!result.reputationReason && threatDb?.suspicious_keywords) {
-    const keywordMatch = threatDb.suspicious_keywords.find((keyword) => hostname.includes(keyword));
-    if (keywordMatch) {
-      result.score += 20;
-      result.reputationReason = 'Suspicious domain keyword';
-      result.indicators.push('Suspicious Domain Keyword');
-    }
-  }
-
-  if (!result.reputationReason) {
-    result.reputationReason = 'No threat indicators';
+  const hostnameEntropy = calculateEntropy(hostname);
+  const pathEntropy = calculateEntropy(path);
+  if (hostnameEntropy >= 3.8 || pathEntropy >= 4.0) {
+    result.score += 15;
+    result.indicators.push('High URL Entropy');
   }
 
   result.score = Math.min(result.score, 100);

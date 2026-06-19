@@ -1,5 +1,5 @@
 chrome.runtime.onInstalled.addListener(() => {
-  console.log('PhishGuard v2 installed.');
+  console.log('PhishGuard v3 installed.');
 });
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {

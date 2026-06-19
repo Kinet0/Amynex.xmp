@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PhishGuard v2</title>
+  <title>PhishGuard v3</title>
   <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>PhishGuard v2</h1>
-      <p>Real-time phishing intelligence + risk scoring</p>
+      <h1>PhishGuard v3</h1>
+      <p>Advanced real-time phishing detection and threat intelligence.</p>
     </header>
 
     <section class="site-info">
@@ -33,6 +33,34 @@
       </div>
       <div class="classification" id="classification">--</div>
       <div class="indicator-list" id="indicatorList"></div>
+    </section>
+
+    <section class="stats-card">
+      <h2>Scan Analytics</h2>
+      <div class="stats-grid">
+        <div class="stats-tile">
+          <span>Total Scans</span>
+          <strong id="totalScans">0</strong>
+        </div>
+        <div class="stats-tile">
+          <span>Safe Sites</span>
+          <strong id="safeCount">0</strong>
+        </div>
+        <div class="stats-tile">
+          <span>Suspicious Sites</span>
+          <strong id="suspiciousCount">0</strong>
+        </div>
+        <div class="stats-tile">
+          <span>Dangerous Sites</span>
+          <strong id="dangerousCount">0</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="explanation-card">
+      <h2>Detection Explanation</h2>
+      <div id="detectionExplanation">No scan results yet.</div>
+      <div id="recommendationText" class="recommendation-text">Keep the extension open to scan the active site.</div>
     </section>
 
     <section class="report-card">

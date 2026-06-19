@@ -8,13 +8,18 @@
     "micr0soft-login.org",
     "secure-bank-verify.com"
   ],
-  "suspicious_keywords": [
+  "trusted_domains": [
+    "example.com",
+    "github.com"
+  ],
+  "keywords": [
     "secure",
     "verify",
     "login",
     "signin",
     "update",
     "account",
-    "confirm"
+    "confirm",
+    "security"
   ]
 }
