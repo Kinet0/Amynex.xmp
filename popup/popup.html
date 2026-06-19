@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhishGuard v1</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>PhishGuard v1</h1>
+      <p>Real-time phishing risk detection</p>
+    </header>
+
+    <section class="site-info">
+      <div class="label">Current Website</div>
+      <div id="currentUrl">Loading...</div>
+    </section>
+
+    <section class="risk-card">
+      <div class="score-row">
+        <span>Risk Score</span>
+        <span id="riskScore">--</span>
+      </div>
+      <div class="classification" id="classification">--</div>
+      <div class="indicator-list" id="indicatorList"></div>
+    </section>
+
+    <section class="history-card">
+      <h2>Recent Scans</h2>
+      <div id="scanHistory">Loading history...</div>
+    </section>
+
+    <button id="refreshButton">Refresh Scan</button>
+  </div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
