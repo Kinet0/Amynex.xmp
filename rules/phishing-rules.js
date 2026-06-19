@@ -1,5 +1,5 @@
 // phishing-rules.js
-// Reusable phishing rules and detection patterns for PhishGuard v3.
+// Reusable phishing rules and detection patterns for Amynex.xmp.
 
 const phishingRules = {
   urlKeywords: [

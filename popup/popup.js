@@ -1,5 +1,5 @@
 // popup.js
-// PhishGuard v3 popup controller.
+// Amynex.xmp popup controller.
 
 import { analyzeUrl } from '../rules/url-analyzer.js';
 import { analyzeDom } from '../rules/dom-analyzer.js';

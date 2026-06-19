@@ -1,5 +1,5 @@
 chrome.runtime.onInstalled.addListener(() => {
-  console.log('PhishGuard v3 installed.');
+  console.log('Amynex.xmp installed.');
 });
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {

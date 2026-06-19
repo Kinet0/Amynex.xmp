@@ -1,6 +1,6 @@
-# PhishGuard v3
+# Amynex.xmp
 
-PhishGuard v3 is an advanced, privacy-first Chrome extension for real-time phishing detection. It performs local URL intelligence, DOM inspection, content analysis, reputation matching, risk scoring, and secure reporting.
+Amynex.xmp is an advanced, privacy-first Chrome extension for real-time phishing detection. It performs local URL intelligence, DOM inspection, content analysis, reputation matching, risk scoring, and secure reporting.
 
 ## Project Features
 
@@ -59,7 +59,7 @@ AAA-version1-chromephishing-exetension/
 2. Enable `Developer mode`.
 3. Click `Load unpacked`.
 4. Select the project folder.
-5. Click the PhishGuard v3 toolbar icon.
+5. Click the Amynex.xmp toolbar icon.
 
 ## Testing
 
