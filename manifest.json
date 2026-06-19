@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "PhishGuard v1",
+  "name": "Amynex.xmp",
   "version": "1.0",
   "description": "Real-time phishing detection for Chrome using URL and page content analysis.",
   "permissions": [
@@ -10,7 +10,7 @@
   ],
   "action": {
     "default_popup": "popup/popup.html",
-    "default_title": "PhishGuard v1"
+    "default_title": "Amynex.xmp"
   },
   "background": {
     "service_worker": "content/content.js"

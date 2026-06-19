@@ -1,11 +1,11 @@
-# PhishGuard v1
+# Amynex.xmp
 
-PhishGuard v1 is a beginner-friendly Chrome extension for real-time phishing detection. It analyzes the current website URL and page content, computes a risk score, and stores scan history for portfolio-ready cybersecurity demonstrations.
+Amynex.xmp is a beginner-friendly Chrome extension for real-time phishing detection. It analyzes the current website URL and page content, computes a risk score, and stores scan history for portfolio-ready cybersecurity demonstrations.
 
 ## Project Structure
 
 ```
-phishguard-v1/
+amynex-xmp/
 
 ├── manifest.json
 │
@@ -52,7 +52,7 @@ phishguard-v1/
 2. Enable `Developer mode`.
 3. Click `Load unpacked`.
 4. Select the `AAA-version1-chromephishing-exetension` folder.
-5. Click the PhishGuard icon in the toolbar.
+5. Click the Amynex.xmp icon in the toolbar.
 
 ## Testing Safely
 
