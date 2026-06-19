@@ -1,17 +1,17 @@
 // phishing-rules.js
-// Define reusable phishing rules and domain patterns for the extension.
+// Define reusable phishing rules and domain patterns for PhishGuard v2.
 
 const phishingRules = {
   urlKeywords: [
-    "login",
-    "signin",
-    "verify",
-    "secure",
-    "update",
-    "account",
-    "password",
-    "banking",
-    "confirm"
+    'login',
+    'signin',
+    'verify',
+    'secure',
+    'update',
+    'account',
+    'password',
+    'banking',
+    'confirm'
   ],
   lookalikePatterns: [
     /paypa1\./i,
@@ -20,15 +20,16 @@ const phishingRules = {
     /g00gle\./i,
     /apple-login/i,
     /banking-secure/i,
-    /security-update/i
+    /security-update/i,
+    /paypal-secure/i,
+    /amazon-login/i
   ],
-  popularBrands: [
-    "paypal",
-    "amazon",
-    "google",
-    "microsoft",
-    "apple",
-    "bank"
+  formIndicators: [
+    'email',
+    'user',
+    'username',
+    'phone',
+    'tel'
   ]
 };
 

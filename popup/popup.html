@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Amynex.xmp</title>
-  <link rel="stylesheet" href="popup.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PhishGuard v2</title>
+  <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>Amynex.xmp</h1>
-      <p>Real-time phishing risk detection</p>
+      <h1>PhishGuard v2</h1>
+      <p>Real-time phishing intelligence + risk scoring</p>
     </header>
 
     <section class="site-info">
       <div class="label">Current Website</div>
-      <div id="currentUrl">Loading...</div>
+      <div id="currentUrl">Loading current site…</div>
+      <div class="meta-row">
+        <span class="meta-label">Threat Reputation</span>
+        <span id="threatReputation">Unknown</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Last Scan</span>
+        <span id="lastScanTime">Never</span>
+      </div>
     </section>
 
     <section class="risk-card">
@@ -27,12 +35,22 @@
       <div class="indicator-list" id="indicatorList"></div>
     </section>
 
+    <section class="report-card">
+      <h2>Security Report</h2>
+      <div class="report-actions">
+        <button id="downloadTxtButton">Download TXT</button>
+        <button id="downloadJsonButton">Download JSON</button>
+      </div>
+    </section>
+
     <section class="history-card">
       <h2>Recent Scans</h2>
       <div id="scanHistory">Loading history...</div>
     </section>
 
-    <button id="refreshButton">Refresh Scan</button>
+    <div class="footer-actions">
+      <button id="refreshButton">Refresh Scan</button>
+    </div>
   </div>
 
   <script type="module" src="popup.js"></script>

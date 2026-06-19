@@ -1,0 +1,20 @@
+{
+  "phishing_domains": [
+    "fake-paypal.com",
+    "free-netflix-login.com",
+    "g00gle-account.net",
+    "paypa1-login.net",
+    "amaz0n-security.com",
+    "micr0soft-login.org",
+    "secure-bank-verify.com"
+  ],
+  "suspicious_keywords": [
+    "secure",
+    "verify",
+    "login",
+    "signin",
+    "update",
+    "account",
+    "confirm"
+  ]
+}

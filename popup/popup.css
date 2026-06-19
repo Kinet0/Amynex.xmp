@@ -65,16 +65,74 @@ p {
 }
 
 #riskScore {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #cca6ff;
 }
 
 .classification {
-  padding: 12px;
-  border-radius: 12px;
-  font-weight: 600;
+  padding: 14px 16px;
+  border-radius: 14px;
+  font-weight: 700;
   text-align: center;
+  color: #090a14;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 14px;
+}
+
+.meta-label {
+  color: #8f92be;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.report-card {
+  background: #111228;
+  border: 1px solid rgba(145, 95, 255, 0.16);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.report-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.report-actions button,
+.footer-actions button,
+#refreshButton {
+  width: 100%;
+  border: none;
+  border-radius: 14px;
+  padding: 14px 16px;
+  color: white;
+  background: #7e5cff;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.report-actions button {
+  width: 48%;
+}
+
+.report-actions button:hover,
+#refreshButton:hover {
+  background: #976dff;
+}
+
+.footer-actions {
+  margin-top: 8px;
 }
 
 .indicator-list {
