@@ -3,83 +3,157 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amynex.xmp</title>
+  <title>Amynex</title>
+
+  <!-- Type system: Space Grotesk (display), Inter (body), IBM Plex Mono (data/readouts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
   <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
   <div class="container">
-    <header>
-      <h1>Amynex.xmp</h1>
-      <p>Advanced real-time phishing detection and threat intelligence.</p>
+
+    <header class="brand-bar">
+      <div class="brand-mark">
+        <span class="brand-led" aria-hidden="true"></span>
+        <h1>Amynex</h1>
+      </div>
+      <p class="brand-tagline">Real-time phishing detection &amp; threat intelligence</p>
     </header>
 
-    <section class="site-info">
-      <div class="label">Current Website</div>
-      <div id="currentUrl">Loading current site…</div>
+    <section class="panel site-info">
+      <div class="panel-eyebrow">Active Site</div>
+      <div id="currentUrl" class="site-url">Loading current site…</div>
       <div class="meta-row">
         <span class="meta-label">Threat Reputation</span>
-        <span id="threatReputation">Unknown</span>
+        <span id="threatReputation" class="meta-value">Unknown</span>
       </div>
       <div class="meta-row">
         <span class="meta-label">Last Scan</span>
-        <span id="lastScanTime">Never</span>
+        <span id="lastScanTime" class="meta-value">Never</span>
       </div>
     </section>
 
-    <section class="risk-card">
-      <div class="score-row">
-        <span>Risk Score</span>
-        <span id="riskScore">--</span>
+    <section class="panel risk-panel" id="riskPanel" data-risk="unknown">
+      <div class="panel-eyebrow">Risk Assessment</div>
+
+      <div class="gauge-row">
+        <div class="gauge" aria-hidden="true">
+          <svg viewBox="0 0 120 120" class="gauge-ring">
+            <circle class="gauge-track" cx="60" cy="60" r="52" />
+            <circle class="gauge-value" id="gaugeValueRing" cx="60" cy="60" r="52" />
+          </svg>
+          <div class="gauge-readout">
+            <span id="riskScore">--</span>
+            <span class="gauge-unit">/100</span>
+          </div>
+        </div>
+
+        <div class="gauge-side">
+          <div class="classification-label">Classification</div>
+          <div class="classification" id="classification">--</div>
+          <div class="indicator-list" id="indicatorList"></div>
+        </div>
       </div>
-      <div class="classification" id="classification">--</div>
-      <div class="indicator-list" id="indicatorList"></div>
     </section>
 
-    <section class="stats-card">
-      <h2>Scan Analytics</h2>
+    <section class="panel stats-panel">
+      <div class="panel-eyebrow">Scan Analytics</div>
       <div class="stats-grid">
         <div class="stats-tile">
-          <span>Total Scans</span>
+          <span class="stats-label">Total Scans</span>
           <strong id="totalScans">0</strong>
         </div>
-        <div class="stats-tile">
-          <span>Safe Sites</span>
+        <div class="stats-tile stats-tile--safe">
+          <span class="stats-label">Safe Sites</span>
           <strong id="safeCount">0</strong>
         </div>
-        <div class="stats-tile">
-          <span>Suspicious Sites</span>
+        <div class="stats-tile stats-tile--warn">
+          <span class="stats-label">Suspicious Sites</span>
           <strong id="suspiciousCount">0</strong>
         </div>
-        <div class="stats-tile">
-          <span>Dangerous Sites</span>
+        <div class="stats-tile stats-tile--danger">
+          <span class="stats-label">Dangerous Sites</span>
           <strong id="dangerousCount">0</strong>
         </div>
       </div>
     </section>
 
-    <section class="explanation-card">
-      <h2>Detection Explanation</h2>
-      <div id="detectionExplanation">No scan results yet.</div>
+    <section class="panel explanation-panel">
+      <div class="panel-eyebrow">Detection Explanation</div>
+      <div id="detectionExplanation" class="explanation-text">No scan results yet.</div>
       <div id="recommendationText" class="recommendation-text">Keep the extension open to scan the active site.</div>
     </section>
 
-    <section class="report-card">
-      <h2>Security Report</h2>
+    <section class="panel report-panel">
+      <div class="panel-eyebrow">Security Report</div>
       <div class="report-actions">
-        <button id="downloadTxtButton">Download TXT</button>
-        <button id="downloadJsonButton">Download JSON</button>
+        <button id="downloadTxtButton" class="btn btn--ghost">Download TXT</button>
+        <button id="downloadJsonButton" class="btn btn--ghost">Download JSON</button>
       </div>
     </section>
 
-    <section class="history-card">
-      <h2>Recent Scans</h2>
-      <div id="scanHistory">Loading history...</div>
+    <section class="panel history-panel">
+      <div class="panel-eyebrow">Recent Scans</div>
+      <div id="scanHistory" class="history-list">Loading history…</div>
     </section>
 
     <div class="footer-actions">
-      <button id="refreshButton">Refresh Scan</button>
+      <button id="refreshButton" class="btn btn--primary">Refresh Scan</button>
     </div>
   </div>
+
+  <!-- Purely visual enhancement: drives the risk gauge + color state from the
+       text content popup.js already writes into #riskScore / #classification.
+       Does not alter, intercept, or replace any existing logic in popup.js. -->
+  <script>
+    (function () {
+      const RING_CIRCUMFERENCE = 2 * Math.PI * 52;
+      const ring = document.getElementById('gaugeValueRing');
+      const scoreEl = document.getElementById('riskScore');
+      const classEl = document.getElementById('classification');
+      const panel = document.getElementById('riskPanel');
+
+      if (ring) {
+        ring.style.strokeDasharray = String(RING_CIRCUMFERENCE);
+        ring.style.strokeDashoffset = String(RING_CIRCUMFERENCE);
+      }
+
+      function levelFromText(text) {
+        const t = (text || '').toLowerCase();
+        if (/danger|high|malicious|phish/.test(t)) return 'danger';
+        if (/suspicious|medium|caution|warn/.test(t)) return 'warn';
+        if (/safe|low|clean|trusted/.test(t)) return 'safe';
+        return 'unknown';
+      }
+
+      function syncGauge() {
+        if (!ring || !scoreEl) return;
+        const match = (scoreEl.textContent || '').match(/\d+(\.\d+)?/);
+        const pct = match ? Math.max(0, Math.min(100, parseFloat(match[0]))) : 0;
+        const offset = RING_CIRCUMFERENCE * (1 - pct / 100);
+        ring.style.strokeDashoffset = String(offset);
+      }
+
+      function syncRiskLevel() {
+        if (!panel) return;
+        const level = levelFromText(classEl ? classEl.textContent : '');
+        panel.setAttribute('data-risk', level);
+      }
+
+      const observerOpts = { childList: true, characterData: true, subtree: true };
+      if (scoreEl) new MutationObserver(syncGauge).observe(scoreEl, observerOpts);
+      if (classEl) new MutationObserver(syncRiskLevel).observe(classEl, observerOpts);
+
+      syncGauge();
+      syncRiskLevel();
+    })();
+  </script>
 
   <script type="module" src="popup.js"></script>
 </body>

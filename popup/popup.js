@@ -292,12 +292,12 @@ async function scanCurrentTab() {
 downloadTxtButton.addEventListener('click', () => {
   if (!latestScan) return;
   const report = createTxtReport(latestScan);
-  downloadReport('phishguard-v3-report.txt', report, 'text/plain');
+  downloadReport('amynex-report.txt', report, 'text/plain');
 });
 
 downloadJsonButton.addEventListener('click', () => {
   if (!latestScan) return;
-  downloadReport('phishguard-v3-report.json', JSON.stringify(latestScan, null, 2), 'application/json');
+  downloadReport('amynex-report.json', JSON.stringify(latestScan, null, 2), 'application/json');
 });
 
 refreshButton.addEventListener('click', scanCurrentTab);
