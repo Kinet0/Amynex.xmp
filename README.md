@@ -2,6 +2,10 @@
 
 Amynex.xmp is an advanced, privacy-first Chrome extension for real-time phishing detection. It performs local URL intelligence, DOM inspection, content analysis, reputation matching, risk scoring, and secure reporting.
 
+## Tip
+- make a shortcut command for Amynex.xmp, it makes your life easier.
+- i literallty made this just because i dont want to open another tab when im browsing sketch websites. peace
+
 ## Project Features
 
 - URL intelligence with lookalike, punycode, multiple subdomains, IP addresses, and entropy analysis.
@@ -90,10 +94,6 @@ Use the local test pages in `test-pages/` to verify detection behavior:
 - Local threat intelligence is only as strong as the stored database.
 - The extension does not analyze encrypted traffic.
 - It is a demonstration tool and not a replacement for enterprise-grade security products.
-
-## Tip
-- make a shortcut command for Amynex.xmp, it makes your life easier.
-- i literallty made this just because i dont want to open another tab when im browsing sketch websites. peace
 
 ## Future Improvements
 
