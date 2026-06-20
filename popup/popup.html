@@ -1,93 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Amynex.xmp</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="popup.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <div class="container">
-    <header class="header">
+  <div class="container" role="dialog" aria-label="Amynex security panel">
+    <header class="panel-header">
       <div class="brand">
-        <svg class="logo" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="2" y="2" width="20" height="20" rx="6" fill="url(#g)" />
+        <svg class="logo" width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" fill="url(#g)" />
           <defs>
             <linearGradient id="g" x1="0" x2="1">
-              <stop offset="0" stop-color="#7E5CFF" />
-              <stop offset="1" stop-color="#5CE2FF" />
+              <stop offset="0" stop-color="#7E5CFF"></stop>
+              <stop offset="1" stop-color="#5CE2FF"></stop>
             </linearGradient>
           </defs>
         </svg>
-        <div>
-          <h1>Amynex.xmp</h1>
-          <p class="tagline">Advanced real-time phishing detection and threat intelligence.</p>
+        <div class="brand-text">
+          <div class="title">Amynex.xmp</div>
+          <div class="subtitle">Real-time phishing detection</div>
         </div>
-      </div>
-      <div class="header-actions">
-        <button id="refreshButton" class="btn btn-ghost" type="button">Refresh</button>
       </div>
     </header>
 
-    <main>
-      <section class="site-info" aria-labelledby="site-info-heading">
-        <div class="section-head">
+    <main class="panel-main">
+      <section class="site-info" aria-labelledby="site-info">
+        <div class="site-head">
           <div class="label">Current Website</div>
-          <div class="meta-small">Last scan: <span id="lastScanTime">Never</span></div>
+          <div class="small-meta">Last scan: <span id="lastScanTime">Never</span></div>
         </div>
         <div id="currentUrl" class="current-url">Loading current site…</div>
         <div class="meta-row">
           <span class="meta-label">Threat Reputation</span>
           <span id="threatReputation">Unknown</span>
         </div>
-        <div class="meta-row compact">
-          <span class="meta-label">Detected</span>
-          <span id="detectionTimestamp">—</span>
-        </div>
       </section>
 
       <section class="risk-card" aria-labelledby="risk-heading">
         <div class="risk-top">
-          <div>
+          <div class="score-block">
             <div class="muted">Risk Score</div>
             <div class="risk-score" id="riskScore">--</div>
           </div>
-          <div class="classification" id="classification" aria-live="polite">--</div>
+          <div id="classification" class="classification">--</div>
         </div>
-        <div class="indicator-list" id="indicatorList" aria-live="polite"></div>
+        <div id="indicatorList" class="indicator-list" aria-live="polite"></div>
       </section>
 
       <section class="stats-card">
-        <h2>Scan Analytics</h2>
+        <h2 class="visually-hidden">Scan Analytics</h2>
         <div class="stats-grid">
           <div class="stats-tile">
-            <span>Total Scans</span>
+            <span>Total</span>
             <strong id="totalScans">0</strong>
           </div>
           <div class="stats-tile">
-            <span>Safe Sites</span>
+            <span>Safe</span>
             <strong id="safeCount">0</strong>
           </div>
           <div class="stats-tile">
-            <span>Suspicious Sites</span>
+            <span>Suspicious</span>
             <strong id="suspiciousCount">0</strong>
           </div>
           <div class="stats-tile">
-            <span>Dangerous Sites</span>
+            <span>Danger</span>
             <strong id="dangerousCount">0</strong>
           </div>
         </div>
       </section>
 
       <section class="explanation-card">
-        <h2>Detection Explanation</h2>
+        <h3 class="card-title">Detection Explanation</h3>
         <div id="detectionExplanation">No scan results yet.</div>
         <div id="recommendationText" class="recommendation-text">Keep the extension open to scan the active site.</div>
       </section>
 
       <section class="report-card">
-        <h2>Security Report</h2>
+        <h3 class="card-title">Security Report</h3>
         <div class="report-actions">
           <button id="downloadTxtButton" class="btn btn-outline" type="button">Download TXT</button>
           <button id="downloadJsonButton" class="btn btn-primary" type="button">Download JSON</button>
@@ -95,14 +88,15 @@
       </section>
 
       <section class="history-card">
-        <h2>Recent Scans</h2>
+        <h3 class="card-title">Recent Scans</h3>
         <div id="scanHistory">Loading history...</div>
       </section>
     </main>
 
-    <div class="footer-actions">
+    <footer class="panel-footer">
+      <button id="refreshButton" class="btn btn-ghost" type="button">Refresh</button>
       <button id="downloadReport" class="btn btn-block" type="button">Download Report</button>
-    </div>
+    </footer>
   </div>
 
   <script type="module" src="popup.js"></script>
