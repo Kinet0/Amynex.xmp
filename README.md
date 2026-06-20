@@ -91,6 +91,10 @@ Use the local test pages in `test-pages/` to verify detection behavior:
 - The extension does not analyze encrypted traffic.
 - It is a demonstration tool and not a replacement for enterprise-grade security products.
 
+  ## Tip
+  - make a shortcut command for Amynex.xmp, it makes your life easier.
+  - i literallty made this just because i dont want to open another tab when im browsing sketch websites. peace
+
 ## Future Improvements
 
 - Add real-world phishing blocklists.
