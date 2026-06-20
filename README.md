@@ -4,7 +4,7 @@ Amynex.xmp is an advanced, privacy-first Chrome extension for real-time phishing
 
 ## Tip
 - make a shortcut command for Amynex.xmp, it makes your life easier.
-- i literallty made this just because i dont want to open another tab when im browsing sketch websites. peace
+- i literallty made this just because i dont want to open another tab when im browsing sketchy websites and pasting the URL. peace
 
 ## Project Features
 
