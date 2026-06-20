@@ -16,7 +16,7 @@ Amynex.xmp is an advanced, privacy-first Chrome extension for real-time phishing
 ## Project Structure
 
 ```
-AAA-version1-chromephishing-exetension/
+Version-Amynex-xmp-/
 
 ├── manifest.json
 ├── popup/
